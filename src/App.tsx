@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Train } from './types/Train';
 import { TrainForm, TrainList } from './components';
 import './App.scss';
+import { Header } from './components/Header/Header';
 
 export const App: React.FC = () => {
   const [trains, setTrains] = useState<Train[]>([]);
@@ -20,10 +21,12 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Train Page</h1>
-      
-      <TrainForm onSearch={handleSearch} />
-      {trains.length > 0 && <TrainList trains={trains} />}
+      <Header />
+
+      <div className="App__content">
+        <TrainForm onSearch={handleSearch} />
+        <TrainList trains={trains} />
+      </div>
     </div>
   );
 };
