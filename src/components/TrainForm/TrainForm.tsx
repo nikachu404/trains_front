@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TrainForm.scss';
 
 export const TrainForm: React.FC<{
   onSearch: (departure: string, arrival: string) => void;
@@ -20,32 +21,32 @@ export const TrainForm: React.FC<{
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="train-form">
       <div>
-        <label htmlFor="departureInput" className="form-label">
-          Початкова точка:
-        </label>
         <input
           type="text"
-          className="form-input"
+          className="train-form__input"
           id="departureInput"
+          placeholder="Звідки"
           value={departure}
           onChange={handleDepartureChange}
+          required
         />
       </div>
       <div>
-        <label htmlFor="arrivalInput" className="form-label">
-          Кінцева точка:
-        </label>
         <input
           type="text"
-          className="form-input"
+          className="train-form__input"
           id="arrivalInput"
+          placeholder="Куди"
           value={arrival}
           onChange={handleArrivalChange}
+          required
         />
       </div>
-      <button type="submit">Пошук поїздів</button>
+      <button type="submit" className="train-form__button">
+        Пошук квитків
+      </button>
     </form>
   );
 };
