@@ -1,73 +1,122 @@
 import React, { useState } from 'react';
-import { getCurrentDate } from '../../helpers';
+import cn from 'classnames';
+import { SelectInput } from '..';
+import { formatDate, getCurrentDate, addDays } from '../../helpers';
 import './TrainForm.scss';
 
 type Props = {
-  onSearch: (departure: string, arrival: string) => void;
+  onSearch: (departure: string, arrival: string, date: string) => void;
 };
 
 export const TrainForm: React.FC<Props> = ({ onSearch }) => {
   const [departure, setDeparture] = useState('');
   const [arrival, setArrival] = useState('');
   const [date, setDate] = useState('');
+  const [error, setError] = useState(false);
 
-  const handleDepartureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDeparture(e.target.value);
+  const handleTodayClick = () => {
+    const today = getCurrentDate();
+    setDate(today);
   };
 
-  const handleArrivalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArrival(e.target.value);
+  const handleTomorrowClick = () => {
+    const tomorrow = formatDate(String(addDays(new Date(), 1))).split(' ')[0];
+    setDate(tomorrow);
   };
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-    console.log(e.target.value);
+  const handleDayAfterTomorrowClick = () => {
+    const dayAfterTomorrow = formatDate(String(addDays(new Date(), 2))).split(
+      ' '
+    )[0];
+    setDate(dayAfterTomorrow);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSearch(departure, arrival);
+
+    if (departure && arrival && date) {
+      onSearch(departure, arrival, date);
+      setError(false);
+    } else {
+      setError(true);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="train-form">
-      <div>
-        <input
-          type="text"
-          className="train-form__input"
-          id="departureInput"
-          placeholder="Звідки"
-          value={departure}
-          onChange={handleDepartureChange}
-          required
-        />
+      <SelectInput
+        id="departureSelect"
+        value={departure}
+        onChange={(e) => setDeparture(e.target.value)}
+        placeholder="Звідки"
+        options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+      />
+
+      <SelectInput
+        id="arrivalSelect"
+        value={arrival}
+        onChange={(e) => setArrival(e.target.value)}
+        placeholder="Куди"
+        options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+      />
+
+      <input
+        type="date"
+        className="train-form__input"
+        id="dateInput"
+        placeholder="Дата"
+        value={date}
+        min={getCurrentDate()}
+        onChange={(e) => setDate(e.target.value)}
+      />
+
+      <div className="train-form__date-options">
+        <div
+          className={cn('train-form__date-option', {
+            'train-form__date-option--selected': date === getCurrentDate(),
+          })}
+          onClick={handleTodayClick}
+        >
+          Сьогодні
+        </div>
+
+        <div
+          className={cn('train-form__date-option', {
+            'train-form__date-option--selected':
+              date === formatDate(String(addDays(new Date(), 1))).split(' ')[0],
+          })}
+          onClick={handleTomorrowClick}
+        >
+          Завтра
+        </div>
+
+        <div
+          className={cn('train-form__date-option', {
+            'train-form__date-option--selected':
+              date === formatDate(String(addDays(new Date(), 2))).split(' ')[0],
+          })}
+          onClick={handleDayAfterTomorrowClick}
+        >
+          Післязавтра
+        </div>
       </div>
-      <div>
-        <input
-          type="text"
-          className="train-form__input"
-          id="arrivalInput"
-          placeholder="Куди"
-          value={arrival}
-          onChange={handleArrivalChange}
-          required
-        />
+      <div
+        className={cn(
+          'train-form__date-option train-form__date-option--center',
+          {
+            'train-form__date-option--selected': date === 'next7days',
+          }
+        )}
+        onClick={() => setDate('next7days')}
+      >
+        Наступні 7 днів
       </div>
-      <div>
-        <input
-          type="date"
-          className="train-form__input"
-          id="dateInput"
-          placeholder="Дата"
-          value={date}
-          min={getCurrentDate()}
-          onChange={handleDateChange}
-          required
-        />
-      </div>
+
       <button type="submit" className="train-form__button">
-        Пошук квитків
+        <span className="train-form__button-text">Пошук квитків</span>
       </button>
+
+      {error && <p>Please fill in all fields</p>}
     </form>
   );
 };
