@@ -22,4 +22,41 @@
     border-radius: 5px;
     padding-left: 10px;
   }
+
+  &__date-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__date-option {
+    cursor: pointer;
+
+    &--selected {
+      color: #2c8fab;
+    }
+
+    &--center {
+      margin: 0 auto;
+    }
+  }
+
+  &__button {
+    border: none;
+    border-radius: 10px;
+    background-color: #97dc52;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__button-text {
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
