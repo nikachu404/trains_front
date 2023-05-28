@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { TrainForm, TrainList, Header } from './components';
 import { Train } from './types/Train';
-import { TrainForm, TrainList } from './components';
 import './App.scss';
-import { Header } from './components/Header/Header';
 
 export const App: React.FC = () => {
   const [trains, setTrains] = useState<Train[]>([]);
 
-  const handleSearch = async (departure: string, arrival: string) => {
+  const handleSearch = async (
+    departure: string,
+    arrival: string,
+    date: string
+  ) => {
     try {
       const response = await axios.get<Train[]>(
-        `https://trains-node-js.herokuapp.com/trains?departure=${departure}&arrival=${arrival}`
+        `https://trains-node-js.herokuapp.com/trains?departure=${departure}&arrival=${arrival}&date=${date}`
       );
       setTrains(response.data);
     } catch (error) {
