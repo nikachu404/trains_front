@@ -37,7 +37,7 @@ export const App: React.FC = () => {
         <TrainForm onSearch={handleSearch} />
         {errorMessage && <p className="App__error">{errorMessage}</p>}
 
-        <>{trains.length && <TrainList trains={trains} />}</>
+        {!!trains.length && <TrainList trains={trains} />}
       </div>
     </div>
   );
