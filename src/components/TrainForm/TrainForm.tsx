@@ -42,23 +42,37 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
     }
   };
 
+  const handleTransferArrowsClick = () => {
+    setDeparture(arrival);
+    setArrival(departure);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="train-form">
-      <SelectInput
-        id="departureSelect"
-        value={departure}
-        onChange={(e) => setDeparture(e.target.value)}
-        placeholder="Звідки"
-        options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
-      />
+      <div className="train-form__routes">
+        <SelectInput
+          id="departureSelect"
+          value={departure}
+          onChange={(e) => setDeparture(e.target.value)}
+          placeholder="Звідки"
+          options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+        />
 
-      <SelectInput
-        id="arrivalSelect"
-        value={arrival}
-        onChange={(e) => setArrival(e.target.value)}
-        placeholder="Куди"
-        options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
-      />
+        <img
+          src="assets/transfer-arrows.svg"
+          alt="transfer-arrows"
+          className="train-form__transfer-arrows"
+          onClick={handleTransferArrowsClick}
+        />
+
+        <SelectInput
+          id="arrivalSelect"
+          value={arrival}
+          onChange={(e) => setArrival(e.target.value)}
+          placeholder="Куди"
+          options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+        />
+      </div>
 
       <input
         type="date"
