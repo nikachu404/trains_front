@@ -43,8 +43,10 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
   };
 
   const handleTransferArrowsClick = () => {
-    setDeparture(arrival);
-    setArrival(departure);
+    if (departure && arrival) {
+      setDeparture(arrival);
+      setArrival(departure);
+    }
   };
 
   return (
