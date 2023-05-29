@@ -18,7 +18,7 @@ export const App: React.FC = () => {
         `https://trains-node-js.herokuapp.com/trains?departure=${departure}&arrival=${arrival}&date=${date}`
       );
 
-      if (response.data.length === 0) {
+      if (!response.data.length) {
         setErrorMessage('No tickets available for the selected date ;(');
       } else {
         setErrorMessage('');
@@ -36,7 +36,8 @@ export const App: React.FC = () => {
       <div className="App__content">
         <TrainForm onSearch={handleSearch} />
         {errorMessage && <p className="App__error">{errorMessage}</p>}
-        {trains.length !== 0 && <TrainList trains={trains} />}
+
+        <>{trains.length && <TrainList trains={trains} />}</>
       </div>
     </div>
   );
