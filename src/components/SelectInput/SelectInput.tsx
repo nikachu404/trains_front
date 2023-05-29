@@ -23,6 +23,7 @@ export const SelectInput: React.FC<Props> = ({
       className="train-form__input"
       id={id}
       value={value}
+      name={arrival ? 'departure': 'arrival'}
       onChange={onChange}
     >
       <option value="" disabled>
