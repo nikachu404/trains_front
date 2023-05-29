@@ -58,6 +58,8 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
           onChange={(e) => setDeparture(e.target.value)}
           placeholder="Звідки"
           options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+          arrival={arrival}
+
         />
 
         <img
@@ -73,6 +75,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
           onChange={(e) => setArrival(e.target.value)}
           placeholder="Куди"
           options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+          departure={departure}
         />
       </div>
 
