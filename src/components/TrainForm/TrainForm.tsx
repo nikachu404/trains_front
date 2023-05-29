@@ -8,6 +8,8 @@ type Props = {
   onSearch: (departure: string, arrival: string, date: string) => void;
 };
 
+const CITY_ROUTES = ['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів'];
+
 export const TrainForm: React.FC<Props> = ({ onSearch }) => {
   const [departure, setDeparture] = useState('');
   const [arrival, setArrival] = useState('');
@@ -57,7 +59,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
           value={departure}
           onChange={(e) => setDeparture(e.target.value)}
           placeholder="Звідки"
-          options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+          options={CITY_ROUTES}
           arrival={arrival}
 
         />
@@ -74,7 +76,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
           value={arrival}
           onChange={(e) => setArrival(e.target.value)}
           placeholder="Куди"
-          options={['Дніпро', 'Запоріжжя', 'Одеса', 'Харків', 'Київ', 'Львів']}
+          options={CITY_ROUTES}
           departure={departure}
         />
       </div>
