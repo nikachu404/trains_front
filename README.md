@@ -1,6 +1,7 @@
 <h1 align="center">🚂Trains Test Task🚂</h1>
 
-- [✨DEMO✨](https://nikachu404.github.io/trains_front/)
+- [✨WEBSITE✨](https://nikachu404.github.io/trains_front/)
+- [✨DEMO✨](https://www.loom.com/share/dc1faa8c03074955aa5da17d4ccc4051)
 - [🔧BACK-END PART🔧](https://github.com/nikachu404/trains_back)
 - [✏️TASK✏️](https://drive.google.com/file/d/1ptiJJ9k0lgw0SFWYlj2og7HhkPFTvuG-/view)
 
