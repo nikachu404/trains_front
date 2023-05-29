@@ -6,6 +6,7 @@ import './App.scss';
 
 export const App: React.FC = () => {
   const [trains, setTrains] = useState<Train[]>([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSearch = async (
     departure: string,
@@ -16,6 +17,12 @@ export const App: React.FC = () => {
       const response = await axios.get<Train[]>(
         `https://trains-node-js.herokuapp.com/trains?departure=${departure}&arrival=${arrival}&date=${date}`
       );
+
+      if (response.data.length === 0) {
+        setErrorMessage('No tickets available for the selected date ;(');
+      } else {
+        setErrorMessage('');
+      }
       setTrains(response.data);
     } catch (error) {
       console.error('Error fetching trains:', error);
@@ -28,7 +35,8 @@ export const App: React.FC = () => {
 
       <div className="App__content">
         <TrainForm onSearch={handleSearch} />
-        <TrainList trains={trains} />
+        {errorMessage && <p className="App__error">{errorMessage}</p>}
+        {trains.length !== 0 && <TrainList trains={trains} />}
       </div>
     </div>
   );
