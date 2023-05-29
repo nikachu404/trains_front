@@ -1,0 +1,23 @@
+.date-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__date-option {
+    cursor: pointer;
+
+    &--selected {
+      color: #2c8fab;
+    }
+
+    &--center {
+      margin: 0 auto;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+}
