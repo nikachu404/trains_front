@@ -35,9 +35,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
   };
 
   const handleOnChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
     key: string
   ) => {
     setFormValues({ ...formValues, [key]: e.target.value });
@@ -68,7 +66,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
         <SelectInput
           id="departureSelect"
           value={formValues.departure}
-          onChange={(e) => handleOnChange(e, e.target.name)}
+          onChange={(e) => handleOnChange(e, 'departure')}
           placeholder="Звідки"
           options={CITY_ROUTES}
           arrival={formValues.arrival}
@@ -84,7 +82,7 @@ export const TrainForm: React.FC<Props> = ({ onSearch }) => {
         <SelectInput
           id="arrivalSelect"
           value={formValues.arrival}
-          onChange={(e) => handleOnChange(e, e.target.name)}
+          onChange={(e) => handleOnChange(e, 'arrival')}
           placeholder="Куди"
           options={CITY_ROUTES}
           departure={formValues.departure}
