@@ -10,12 +10,6 @@
   border-radius: 20px;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.45);
 
-  &__button {
-    width: 200px;
-    height: 40px;
-    margin: 0 auto;
-  }
-
   &__input {
     width: 100%;
     height: 50px;
@@ -23,25 +17,10 @@
     padding-left: 10px;
   }
 
-  &__date-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  &__date-option {
-    cursor: pointer;
-
-    &--selected {
-      color: #2c8fab;
-    }
-
-    &--center {
-      margin: 0 auto;
-    }
-  }
-
   &__button {
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
     border: none;
     border-radius: 10px;
     background-color: #97dc52;
